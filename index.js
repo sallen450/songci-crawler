@@ -101,35 +101,13 @@ function processor(taskObject) {
  * @param  {Number} pageCount 要爬取的页数
  * @param  {String} savedPath 爬取数据保存的路径
  */
-// function start(pageCount, savedPath) {
-//     for (let i = 1; i <= pageCount; i++) {
-//         scarlet.push(`http://www.guoxue.com/qsc/${leftPad(i, 4, '0')}.htm`, processor);
-//     }
-//
-//     scarlet.afterFinish(pageCount, function() {
-//         fs.writeFileSync(savedPath, JSON.stringify(SongCiDict), 'utf8', (err) => {
-//             if (err) {
-//                 console.error(err);
-//             }
-//         });
-//     }, false)
-// }
-//
-// /**
-//  * exec the crawle
-//  */
-// const savedPath = './data/songci.json';
-// const pageCount = 1485;
-// start(pageCount, savedPath);
-
-
-function start() {
-	[638, 639, 640, 641, 642, 643, 644, 645].forEach(function (i) {
+function start(pageCount, savedPath) {
+    for (let i = 1; i <= pageCount; i++) {
         scarlet.push(`http://www.guoxue.com/qsc/${leftPad(i, 4, '0')}.htm`, processor);
-	});
+    }
 
-    scarlet.afterFinish(8, function() {
-        fs.writeFileSync('./data/songci.json', JSON.stringify(SongCiDict), 'utf8', (err) => {
+    scarlet.afterFinish(pageCount, function() {
+        fs.writeFileSync(savedPath, JSON.stringify(SongCiDict), 'utf8', (err) => {
             if (err) {
                 console.error(err);
             }
@@ -137,4 +115,9 @@ function start() {
     }, false)
 }
 
-start();
+/**
+ * exec the crawle
+ */
+const savedPath = './data/songci.json';
+const pageCount = 1485;
+start(pageCount, savedPath);
