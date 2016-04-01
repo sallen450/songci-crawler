@@ -1,0 +1,21 @@
+{
+  "name": "songci-crawler",
+  "version": "0.1.0",
+  "description": "crawler songci",
+  "main": "index.js",
+  "dependencies": {
+    "iconv": "^2.1.11",
+    "cheerio": "^0.20.0",
+    "scarlet-task": "^0.1.0",
+    "simplecrawler": "^0.6.2",
+    "spidex": "^2.1.1",
+    "sugar": "^1.4.1",
+    "lodash": "^4.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sallen450",
+  "license": "MIT"
+}
