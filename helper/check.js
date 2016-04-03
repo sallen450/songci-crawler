@@ -1,14 +1,23 @@
+'use strict';
+
 const songci = require('../data/songci.json');
+const path = require('path');
 const fs = require('fs');
 
 const checkedSognci = [];
 const unCheckedSognci = [];
 
+// const punctuationRe = /[\u3002\uff1b\uff0c\uff1a\u201c\u201d\uff08\uff09\u3001\uff1f\u300a\u300b ]/;
+// const chineseRe = /^[\u4e00-\u9fa5]+$/g;
 /**
  * 检查是否有不标准的字符
  */
 function checkContent(text) {
-	if (/[A-Za-z0-9□\\＿囗/]/.test(text) === false) {
+	// avoid lastIndex bug
+	let checkedRe = /^[\u4e00-\u9fa5： 。 ；  ， ： “ ”（ ） 、 ？ 《 》 ·]+$/g;
+
+	if (checkedRe.test(text)) {
+		// □\/\\＿囗
 		return true;
 	}
 
@@ -29,8 +38,8 @@ songci.forEach(function (item) {
 /**
  * 将新的数据写入 checked.json
  */
-const checkedFileFullPath = '../data/checked.json';
-const unCheckedFileFullPath = '../data/unchecked.json';
+const checkedFileFullPath = path.join(__dirname, '../data/checked.json');
+const unCheckedFileFullPath = path.join(__dirname, '../data/unchecked.json');
 fs.writeFileSync(checkedFileFullPath, JSON.stringify(checkedSognci), 'utf8', (err) => {
 	if (err) {
 		console.error(err);
