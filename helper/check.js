@@ -8,7 +8,7 @@ const unCheckedSognci = [];
  * 检查是否有不标准的字符
  */
 function checkContent(text) {
-	if (/[A-Za-z0-9□\\＿/]/.test(text) === false) {
+	if (/[A-Za-z0-9□\\＿囗/]/.test(text) === false) {
 		return true;
 	}
 
